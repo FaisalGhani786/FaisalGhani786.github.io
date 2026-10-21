@@ -184,6 +184,15 @@ code.mod{font:600 12px var(--mono);padding:2px 6px;border-radius:4px;background:
 footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 .proj-links{display:flex;gap:10px;flex-wrap:wrap}
+.lab{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.lab-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:14px;align-content:start;min-width:0}
+.lab-card.feat{grid-column:1/-1;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:32px;align-items:start}
+.lab-card .demo{background:var(--bg)}
+.lab-card .pc-form input,.lab-card .pc-res:not(.bad):not(.good){background:var(--surface)}
+.lab-info{display:grid;gap:14px;min-width:0}
+.lab-info > p{max-width:62ch}
+.skills ul{margin:8px 0 0;padding-left:18px;display:grid;gap:4px}
+@media(max-width:860px){.lab,.lab-card.feat{grid-template-columns:1fr}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .pc-body{padding:16px;display:grid;gap:12px}
 .pc-form{display:flex;gap:8px;flex-wrap:wrap}
@@ -274,6 +283,7 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;ju
     <a class="brand" href="#top"><i>FG</i>Faisal Ghani</a>
     <nav aria-label="Sections"><ul>
       <li><a href="#work">Work</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li class="hide-s"><a href="#experience">Experience</a></li>
       <li class="hide-s"><a href="#stack">Stack</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -303,6 +313,7 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;ju
       </dl>
       <div class="cta">
         <a class="btn solid" href="#work">See my work</a>
+        <a class="btn" href="#projects">Try my projects</a>
         <a class="btn" href="https://github.com/FaisalGhani786">GitHub ↗</a>
         <a class="btn" href="https://www.linkedin.com/in/fa1salg/">LinkedIn ↗</a>
       </div>
@@ -342,8 +353,8 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;ju
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">Selected work</span>
-        <h2>Projects</h2>
-        <p>My own products, client builds and in-house work for Comtech and CyberPro, from a SaaS platform to a video production pipeline.</p>
+        <h2>Work</h2>
+        <p>My own products and the in-house work I do for Novus Motus, CyberPro and Comtech, from a SaaS platform to a video production pipeline.</p>
       </div>
 
       <div class="work">
@@ -424,40 +435,6 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;ju
 
         <article class="job">
           <div class="job-main">
-            <div class="kicker"><span class="pill y">Open source</span><span class="pill">CyberPro Solutions</span></div>
-            <h3>Pwned Check</h3>
-            <p>A tool that checks whether a password has appeared in a real data breach, without the password ever leaving your device. It uses k-anonymity: the browser hashes the password and sends only the first 5 characters of the hash to the Have I Been Pwned database, then finds the match locally.</p>
-            <ul>
-              <li>Visual breakdown of exactly what is sent and what stays on your device</li>
-              <li>Live strength meter that explains why a password is weak</li>
-              <li>Unit tests that prove the password and full hash are never sent, run on every push with GitHub Actions</li>
-            </ul>
-            <div class="demo" aria-label="Try Pwned Check">
-              <div class="demo-top"><span class="eyebrow">pwned check · try it here</span><span class="live">Live breach data</span></div>
-              <div class="pc-body">
-                <form class="pc-form" id="pcForm" autocomplete="off">
-                  <label class="sr" for="pcPw">Password to check</label>
-                  <input id="pcPw" type="password" placeholder="Try password123" spellcheck="false" autocapitalize="off">
-                  <button class="btn sm" id="pcGo" type="submit">Check</button>
-                </form>
-                <div class="pc-split"><span>Sent to API</span><b class="pc-pre" id="pcPre">-----</b><span>Kept on device</span><b class="pc-suf" id="pcSuf">-----------------------------------</b></div>
-                <p class="pc-res" id="pcRes" aria-live="polite">Nothing is sent until you press Check, and even then only the 5 yellow characters.</p>
-              </div>
-            </div>
-            <div class="tags"><span class="tag">JavaScript</span><span class="tag">Web Crypto API</span><span class="tag">k-anonymity</span><span class="tag">Node test runner</span><span class="tag">GitHub Actions</span></div>
-            <div class="proj-links"><a class="btn sm" href="https://faisalghani786.github.io/pwned-check/">Try it live ↗</a><a class="btn sm" href="https://github.com/FaisalGhani786/pwned-check">Source code ↗</a></div>
-          </div>
-          <dl class="meta">
-            <div><dt>Type</dt><dd>Security awareness tool</dd></div>
-            <div><dt>For</dt><dd>CyberPro Solutions</dd></div>
-            <div><dt>Role</dt><dd>Solo build</dd></div>
-            <div><dt>Year</dt><dd>2026</dd></div>
-            <div><dt>Status</dt><dd class="status">Live</dd></div>
-          </dl>
-        </article>
-
-        <article class="job">
-          <div class="job-main">
             <div class="kicker"><span class="pill">In-house</span></div>
             <h3>CyberPro Solutions content system</h3>
             <p>The brand, marketing and training content setup for CyberPro Solutions, the cybersecurity division of Comtech. I automated most of it with code, so new posters, adverts and training videos come out of a pipeline instead of a design tool.</p>
@@ -518,6 +495,50 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;ju
           </dl>
         </article>
 
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Open source · try them yourself</span>
+        <h2>Projects</h2>
+        <p>Small, focused tools that show how things work under the hood. Each one is open source, tested and live, and several are built for CyberPro Solutions.</p>
+      </div>
+      <div class="lab">
+        <!-- To add a project: copy an <article class="lab-card"> block. Use class="lab-card feat" for a full-width card with a demo. -->
+        <article class="lab-card feat">
+          <div class="lab-info">
+            <div class="kicker"><span class="pill">CyberPro Solutions</span><span class="pill y">Cybersecurity</span></div>
+            <h3>Pwned Check</h3>
+            <p>Checks whether a password has appeared in a real data breach, without the password ever leaving your device. The browser hashes it, sends only the first 5 characters of the hash to the Have I Been Pwned database, and finds the match locally. This technique is called k-anonymity.</p>
+            <div class="skills">
+              <span class="eyebrow">What it shows</span>
+              <ul>
+                <li>Hashing with the Web Crypto API (SHA-1)</li>
+                <li>Privacy by design with k-anonymity</li>
+                <li>Working with a public REST API</li>
+                <li>Unit tests that prove the password is never sent</li>
+                <li>CI/CD: GitHub Actions tests, then deploys</li>
+              </ul>
+            </div>
+            <div class="tags"><span class="tag">JavaScript</span><span class="tag">Web Crypto</span><span class="tag">REST API</span><span class="tag">Node test runner</span><span class="tag">GitHub Actions</span></div>
+            <div class="proj-links"><a class="btn sm solid" href="https://faisalghani786.github.io/pwned-check/">Open full tool ↗</a><a class="btn sm" href="https://github.com/FaisalGhani786/pwned-check">Source code ↗</a></div>
+          </div>
+          <div class="demo" aria-label="Try Pwned Check">
+            <div class="demo-top"><span class="eyebrow">pwned check · try it here</span><span class="live">Live breach data</span></div>
+            <div class="pc-body">
+              <form class="pc-form" id="pcForm" autocomplete="off">
+                <label class="sr" for="pcPw">Password to check</label>
+                <input id="pcPw" type="password" placeholder="Try password123" spellcheck="false" autocapitalize="off">
+                <button class="btn sm" id="pcGo" type="submit">Check</button>
+              </form>
+              <div class="pc-split"><span>Sent to API</span><b class="pc-pre" id="pcPre">-----</b><span>Kept on device</span><b class="pc-suf" id="pcSuf">-----------------------------------</b></div>
+              <p class="pc-res" id="pcRes" aria-live="polite">Nothing is sent until you press Check, and even then only the 5 yellow characters.</p>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -822,7 +843,7 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;ju
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(redraw);
   if(!reduce&&"IntersectionObserver" in window){
     const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("rv-in");io.unobserve(e.target)}}),{rootMargin:"0px 0px -8% 0px"});
-    document.querySelectorAll(".job,.cols > .card,.feature > *,.stack > div,.sec-head").forEach(el=>{if(el.getBoundingClientRect().top>window.innerHeight){el.classList.add("rv");io.observe(el)}});
+    document.querySelectorAll(".job,.lab-card,.cols > .card,.feature > *,.stack > div,.sec-head").forEach(el=>{if(el.getBoundingClientRect().top>window.innerHeight){el.classList.add("rv");io.observe(el)}});
   }
 })();
 </script>
