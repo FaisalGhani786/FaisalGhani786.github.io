@@ -184,6 +184,21 @@ code.mod{font:600 12px var(--mono);padding:2px 6px;border-radius:4px;background:
 footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 .proj-links{display:flex;gap:10px;flex-wrap:wrap}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.pc-body{padding:16px;display:grid;gap:12px}
+.pc-form{display:flex;gap:8px;flex-wrap:wrap}
+.pc-form input{flex:1 1 220px;min-width:0;font:500 15px var(--mono);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:10px 12px}
+.pc-form input:focus{outline:none;border-color:var(--link)}
+.pc-form .btn{background:var(--plate);color:var(--plate-ink);border-color:var(--plate);font-weight:700}
+.pc-split{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;font-size:13px;color:var(--muted);align-items:baseline}
+.pc-split b{font:700 13px var(--mono);letter-spacing:.05em;word-break:break-all}
+.pc-pre{background:var(--plate);color:var(--plate-ink);padding:1px 5px;border-radius:4px;justify-self:start}
+.pc-suf{color:var(--good)}
+.pc-res{margin:0;padding:12px 14px;border-radius:8px;background:var(--bg);border:1px solid var(--line);font-size:14px}
+.pc-res.bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 45%,transparent);color:var(--ink)}
+.pc-res.good{background:var(--good-soft);border-color:color-mix(in srgb,var(--good) 45%,transparent);color:var(--ink)}
+.pc-res strong{font-family:var(--display);font-size:17px}
+.pc-res.bad strong{color:var(--bad)}.pc-res.good strong{color:var(--good)}
 .card a.site{font:600 13px var(--mono);text-decoration:none}
 .card a.site:hover{text-decoration:underline}
 /* shared demo shell */
@@ -409,7 +424,7 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;ju
 
         <article class="job">
           <div class="job-main">
-            <div class="kicker"><span class="pill y">Open source</span></div>
+            <div class="kicker"><span class="pill y">Open source</span><span class="pill">CyberPro Solutions</span></div>
             <h3>Pwned Check</h3>
             <p>A tool that checks whether a password has appeared in a real data breach, without the password ever leaving your device. It uses k-anonymity: the browser hashes the password and sends only the first 5 characters of the hash to the Have I Been Pwned database, then finds the match locally.</p>
             <ul>
@@ -417,11 +432,24 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;ju
               <li>Live strength meter that explains why a password is weak</li>
               <li>Unit tests that prove the password and full hash are never sent, run on every push with GitHub Actions</li>
             </ul>
+            <div class="demo" aria-label="Try Pwned Check">
+              <div class="demo-top"><span class="eyebrow">pwned check · try it here</span><span class="live">Live breach data</span></div>
+              <div class="pc-body">
+                <form class="pc-form" id="pcForm" autocomplete="off">
+                  <label class="sr" for="pcPw">Password to check</label>
+                  <input id="pcPw" type="password" placeholder="Try password123" spellcheck="false" autocapitalize="off">
+                  <button class="btn sm" id="pcGo" type="submit">Check</button>
+                </form>
+                <div class="pc-split"><span>Sent to API</span><b class="pc-pre" id="pcPre">-----</b><span>Kept on device</span><b class="pc-suf" id="pcSuf">-----------------------------------</b></div>
+                <p class="pc-res" id="pcRes" aria-live="polite">Nothing is sent until you press Check, and even then only the 5 yellow characters.</p>
+              </div>
+            </div>
             <div class="tags"><span class="tag">JavaScript</span><span class="tag">Web Crypto API</span><span class="tag">k-anonymity</span><span class="tag">Node test runner</span><span class="tag">GitHub Actions</span></div>
             <div class="proj-links"><a class="btn sm" href="https://faisalghani786.github.io/pwned-check/">Try it live ↗</a><a class="btn sm" href="https://github.com/FaisalGhani786/pwned-check">Source code ↗</a></div>
           </div>
           <dl class="meta">
-            <div><dt>Type</dt><dd>Security tool</dd></div>
+            <div><dt>Type</dt><dd>Security awareness tool</dd></div>
+            <div><dt>For</dt><dd>CyberPro Solutions</dd></div>
             <div><dt>Role</dt><dd>Solo build</dd></div>
             <div><dt>Year</dt><dd>2026</dd></div>
             <div><dt>Status</dt><dd class="status">Live</dd></div>
@@ -509,7 +537,7 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;ju
         <div class="card">
           <span class="when">Now</span>
           <h3>CSOO, CyberPro Solutions</h3>
-          <p>I work with clients on cybersecurity risk management, security audits and ethical hacking, and I lead the brand and training content.</p>
+          <p>I work with clients on cybersecurity risk management, security audits and ethical hacking, and I lead the brand and training content. I also built <a href="https://faisalghani786.github.io/pwned-check/">Pwned Check</a>, a free breached-password checker, as a CyberPro security awareness tool.</p>
           <a class="site" href="https://www.cyberprosolutions.co.uk/">cyberprosolutions.co.uk ↗</a>
         </div>
       </div>
@@ -769,6 +797,23 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;ju
   $("raceBtn").addEventListener("click",race);
   race();
   if(reduce)statics.push(drawLanes);else loop($("raceDemo"),t=>{if(lanes.every(L=>L.done)){if(!doneAt)doneAt=t;else if(t-doneAt>3500)race()}else lanes.forEach((L,i)=>{stepLane(L,i);stepLane(L,i)});drawLanes()});
+
+  /* ================= PWNED CHECK mini ================= */
+  async function sha1(t){const d=await crypto.subtle.digest("SHA-1",new TextEncoder().encode(t));return [...new Uint8Array(d)].map(b=>b.toString(16).padStart(2,"0")).join("").toUpperCase()}
+  const pcPw=$("pcPw"),pcRes=$("pcRes"),pcGo=$("pcGo");
+  pcPw.addEventListener("input",async()=>{const v=pcPw.value;if(!v){$("pcPre").textContent="-----";$("pcSuf").textContent="-".repeat(35);return}const h=await sha1(v);if(pcPw.value!==v)return;$("pcPre").textContent=h.slice(0,5);$("pcSuf").textContent=h.slice(5)});
+  $("pcForm").addEventListener("submit",async e=>{
+    e.preventDefault();if(!pcPw.value){pcPw.focus();return}
+    pcGo.disabled=true;pcGo.textContent="Checking…";
+    try{
+      const h=await sha1(pcPw.value),pre=h.slice(0,5),suf=h.slice(5);
+      const r=await fetch("https://api.pwnedpasswords.com/range/"+pre);if(!r.ok)throw new Error();
+      let n=0;for(const line of (await r.text()).split(/\r?\n/)){const [s,c]=line.trim().split(":");if(s===suf){n=parseInt(c,10)||0;break}}
+      if(n>0){pcRes.className="pc-res bad";pcRes.innerHTML=`<strong>Found in ${n.toLocaleString("en-GB")} breaches.</strong> Attackers already have this password, so stop using it.`}
+      else{pcRes.className="pc-res good";pcRes.innerHTML="<strong>Not found in any known breach.</strong> Still use a long, unique password for every site."}
+    }catch{pcRes.className="pc-res";pcRes.innerHTML='Couldn’t reach the breach database from this page. <a href="https://faisalghani786.github.io/pwned-check/">Open the full tool ↗</a>'}
+    finally{pcGo.disabled=false;pcGo.textContent="Check"}
+  });
 
   /* ================= statics, resize, reveal ================= */
   build(false);
