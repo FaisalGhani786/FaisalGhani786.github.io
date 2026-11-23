@@ -357,7 +357,7 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;ju
       <div class="sec-head">
         <span class="eyebrow">Selected work</span>
         <h2>Work</h2>
-        <p>My own products, client builds and the in-house work I do for Novus Motus, CyberPro and Comtech, from a SaaS platform and a booking platform to a video production pipeline.</p>
+        <p>My own products, client builds and the in-house work I do for Novus Motus, CyberPro and Comtech, from a SaaS platform and booking platforms to a video production pipeline.</p>
       </div>
 
       <div class="work">
@@ -365,13 +365,16 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;ju
           <div class="job-main">
             <div class="kicker"><span class="pill y">My product</span></div>
             <h3>Novus</h3>
-            <p>An AI-powered listing and stock management platform for UK independent car dealerships. It's a rebuilt successor to my earlier product, Kerbside, and focuses on making the listing workflow as fast and simple as possible.</p>
+            <p>An AI-powered listing and stock management platform for UK independent car dealerships. It runs the back office in one place: stock, sales, invoices, profit and adverts. It's a rebuilt successor to my earlier product, Kerbside, and focuses on making the listing workflow as fast and simple as possible.</p>
             <ul>
-              <li>Dealers add a car once and get a ready-to-publish listing (try the builder above)</li>
-              <li>Stock management designed around how small forecourts actually work</li>
+              <li>Dealers add a car once and get ready-to-publish copy for Autotrader, their website, Instagram, TikTok and Facebook Marketplace, written by Claude (try the builder above)</li>
+              <li>Stock management designed around how small forecourts actually work, including imports with supplier, landed cost and NOVA / IVA status</li>
+              <li>UK invoices under the VAT margin scheme or VAT-qualifying, with sequential numbers assigned safely inside the database</li>
+              <li>Sales and profit dashboard with a monthly profit chart, revenue, units sold and average profit</li>
+              <li>Optional two-factor login (TOTP), enforced by the database, with row-level security so each dealer only sees their own data</li>
               <li>Wrote a formal investment proposal targeting pre-seed funding</li>
             </ul>
-            <div class="tags"><span class="tag">TypeScript</span><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">Vercel</span><span class="tag">AI</span></div>
+            <div class="tags"><span class="tag">TypeScript</span><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">Postgres RLS</span><span class="tag">Claude API</span><span class="tag">Vercel</span></div>
           </div>
           <dl class="meta">
             <div><dt>Type</dt><dd>SaaS product</dd></div>
@@ -458,6 +461,52 @@ footer{padding-block:28px 40px;color:var(--muted);font-size:13px;display:flex;ju
             <div><dt>For</dt><dd>CyberPro Solutions &amp; clients</dd></div>
             <div><dt>Period</dt><dd>Jul 2026 – now</dd></div>
             <div><dt>Status</dt><dd class="status build">Active</dd></div>
+          </dl>
+        </article>
+
+        <article class="job">
+          <div class="job-main">
+            <div class="kicker"><span class="pill y">Platform</span></div>
+            <h3>CyberPro ServiceDesk360: website and sales portal</h3>
+            <p>The marketing site and lead-management portal for ServiceDesk360, a service desk built for managed service providers (MSPs), hosted and supported by Comtech IT Services. The site explains the product (multi-customer ticketing, email-to-ticket, SLA tracking and technician management) and turns visitors into demo requests.</p>
+            <ul>
+              <li>Multi-page site with product, features, solutions, sector, tour and pricing pages</li>
+              <li>Demo requests saved to Postgres, with instant alerts in Microsoft Teams</li>
+              <li>Admin portal with enquiry search, filters and CSV export, a Kanban sales pipeline, follow-ups, analytics and a full audit log</li>
+              <li>Pricing editor that drives the public pricing page</li>
+              <li>Admin sign-in I built myself: scrypt-hashed passwords, signed httpOnly session cookies and a forced password change on first login</li>
+              <li>Browser push notifications for new enquiries, and a portal that can be installed as an app</li>
+            </ul>
+            <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Tailwind</span><span class="tag">Motion</span><span class="tag">Postgres</span><span class="tag">Zod</span><span class="tag">Web Push</span><span class="tag">Vercel</span></div>
+          </div>
+          <dl class="meta">
+            <div><dt>Type</dt><dd>Marketing site &amp; portal</dd></div>
+            <div><dt>For</dt><dd>Comtech / CyberPro Solutions</dd></div>
+            <div><dt>Year</dt><dd>2026</dd></div>
+            <div><dt>Status</dt><dd class="status build">Phase 1</dd></div>
+          </dl>
+        </article>
+
+        <article class="job">
+          <div class="job-main">
+            <div class="kicker"><span class="pill y">Platform</span></div>
+            <h3>Cottage Garden: pet boarding platform</h3>
+            <p>A booking and operations platform for a cat and dog boarding business. It covers the whole stay, from the online booking request to collection day, for customers, staff and managers.</p>
+            <ul>
+              <li>Bookings for cat chalets, family suites and kennels, with automatic unit allocation, blocked dates, a waitlist and booking holds that expire</li>
+              <li>Vaccination checks on every booking, verified by staff, with reminders to owners before vaccinations expire</li>
+              <li>Check-in and check-out, daily care tasks generated automatically, care logs, incident records and photo updates for owners</li>
+              <li>Staff rotas, shift handovers, and separate roles for staff, managers and admins</li>
+              <li>Pricing rules, extras (collection, medication, special diets), invoices, and Stripe or manual payments</li>
+              <li>Row-level security on all 33 tables, business rules in database functions, and an audit log that can't be edited</li>
+            </ul>
+            <div class="tags"><span class="tag">Supabase</span><span class="tag">Postgres RLS</span><span class="tag">SQL functions</span><span class="tag">Stripe</span></div>
+          </div>
+          <dl class="meta">
+            <div><dt>Type</dt><dd>Booking &amp; operations</dd></div>
+            <div><dt>Users</dt><dd>Owners, staff, managers</dd></div>
+            <div><dt>Year</dt><dd>2026</dd></div>
+            <div><dt>Status</dt><dd class="status build">In build</dd></div>
           </dl>
         </article>
 
